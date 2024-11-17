@@ -2,11 +2,6 @@ package main;
 import java.io.*;
 import java.util.*;
 import org.json.*;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-
 public class TaskManager {
 	private List<Task> Tasks =new ArrayList<>();
 	private final String filePath="data.json";
@@ -23,22 +18,38 @@ public class TaskManager {
 		saveTasks();
 	}
 	
-	public void UpdateTask(int index,TaskStatus status) {
-		if(index>=0 && index<Tasks.size()) {
-			Tasks.get(index).setStatus(status.name());
-		}
-		else {
-			System.out.println("invalid task index");
-		}
-	}
-	public void DeleteTask(int index) {
-		if(index>=0) {
-			Tasks.remove(index);
-		}
-		else {
-			System.out.println("invalid task index");
-		}
-	}
+	public void markTaskStatus(int id, String status) {
+        Task task = getTaskById(id);
+        if (task != null) {
+            task.setStatus(status);
+            saveTasks();
+            System.out.println("Task marked as " + status + ".");
+        } else {
+            System.out.println("Task not found.");
+        }
+    }
+	public void updateTask(int id, String description) {
+        Task task = getTaskById(id);
+        if (task != null) {
+            task.setDescription(description);
+            saveTasks();
+            System.out.println("Task updated successfully.");
+        } else {
+            System.out.println("Task not found.");
+        }
+        return;
+    }
+	public void deleteTask(int id) {
+        Task task = getTaskById(id);
+        if (task != null) {
+            Tasks.remove(task);
+            saveTasks();
+            System.out.println("Task deleted successfully.");
+        } else {
+            System.out.println("Task not found.");
+        }
+    }
+
 	public void ListTasks(String filter) {
 		for(Task task:Tasks) {
 			if(filter==null || task.getStatus()==filter) {

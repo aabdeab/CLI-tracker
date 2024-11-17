@@ -1,5 +1,6 @@
 package main;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.*;
@@ -16,18 +17,19 @@ public class TaskManager {
 		loadTasks();	
 	}
 	private void loadTasks() {
-		try(BufferedReader reader=new BufferedReader(new FileReader(filePath))){
+		File file=new File(filePath);
+		if(!file.exists()) {
+			return ;
+		}
+		try(BufferedReader reader=new BufferedReader(new FileReader(file))){
 			ObjectMapper obj =new ObjectMapper();
 			JsonNode node = obj.readTree(new FileReader(filePath));
 			for(int i=0;i<node.size();i++) {
 				Tasks.add(new Task());
 			}
-			
-			
 		}
 		catch(Exception e) {
 			System.out.println("there is an error check out");
-			
 		}
 		
 	}

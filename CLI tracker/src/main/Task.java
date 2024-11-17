@@ -1,8 +1,20 @@
 package main;
 
+import java.time.LocalDateTime;
+
 public class Task {
+	private int id;
+	
 	private String description;
 	private String status;
+	private LocalDateTime dateCreate;
+	private LocalDateTime dataUpdate;
+	public Task() {
+		description="created";
+		status="ToDO";
+		dateCreate=LocalDateTime.now();
+		dataUpdate=LocalDateTime.now();
+	}
 	public String getDescription() {
 		return description;
 	}
@@ -14,6 +26,24 @@ public class Task {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public LocalDateTime getDateCreate() {
+		return dateCreate;
+	}
+	public void setDateCreate(LocalDateTime dateCreate) {
+		this.dateCreate = dateCreate;
+	}
+	public LocalDateTime getDataUpdate() {
+		return dataUpdate;
+	}
+	public void setDataUpdate(LocalDateTime dataUpdate) {
+		this.dataUpdate = dataUpdate;
 	}
 	@Override
 	public String toString() {

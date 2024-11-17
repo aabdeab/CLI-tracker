@@ -15,6 +15,10 @@ public class Task {
 		dateCreate=LocalDateTime.now();
 		dataUpdate=LocalDateTime.now();
 	}
+	public Task(int id,String Description) {
+		this.description=Description;
+		this.id=id;
+	}
 	public String getDescription() {
 		return description;
 	}

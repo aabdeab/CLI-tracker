@@ -1,1 +1,1 @@
-https://github.com/aabdeab/CLI-tracker.git
+https://github.com/aabdeab/CLI-tracker
